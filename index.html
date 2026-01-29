@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Your Landing</title>
+    <style>
+      body { font-family: system-ui, Arial, sans-serif; margin: 0; padding: 40px; }
+      .wrap { max-width: 900px; margin: 0 auto; }
+    </style>
+
+    <!-- ✅ If your widget vendor says “paste into <head>”, put it here -->
+    <!-- PASTE YOUR WIDGET <script>...</script> HERE -->
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Yerani Travel</h1>
+      <p>Short description…</p>
+
+      <!-- If the widget needs a container div, add it (vendor-specific) -->
+      <div id="widget-root"></div>
+    </div>
+
+    <!-- ✅ If vendor says “paste before </body>”, put it here instead -->
+    <!-- PASTE YOUR WIDGET <script>...</script> HERE (if required) -->
+  </body>
+  <script>!function(){var t="1200px",e="https://staging.widget.travelity.app",n=e+"/?token="+encodeURIComponent("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjk3Yjk4YzkwYTczMTNjNjJlNjk0MjhmIn0.5r5zdZ_qFrNfEm7rceJI3e8mcIZWRuqu4-1FWr0jbLY");function i(t){return!t||("transparent"===(t=String(t).trim().toLowerCase())||"rgba(0, 0, 0, 0)"===t||"hsla(0, 0%, 0%, 0)"===t)}var a=document.createElement("div");a.id="travelity-widget-container",a.style.width="100%",a.style.boxSizing="border-box",a.style.margin="0 auto",a.style.padding="0",a.style.maxWidth=t,a.style.display="block";var r=document.createElement("iframe");r.id="travelity-widget-iframe",r.src=n,r.style.width="100%",r.style.height="600px",r.style.border="0",r.style.display="block",r.setAttribute("loading","lazy"),r.setAttribute("allowtransparency","true"),a.appendChild(r);var o=document.currentScript;o&&o.parentNode?o.parentNode.insertBefore(a,o):document.body.appendChild(a);var s=null;function d(){try{var t=(n=(n=location.hash||"#/").replace(/^#/,""))?("/"!==n.charAt(0)&&(n="/"+n),n):"/";if(t===s)return;r.contentWindow.postMessage({type:"PARENT_NAV",path:t},e),s=t}catch(t){}var n}function c(){try{r.contentWindow.postMessage({type:"REQUEST_HEIGHT"},e)}catch(t){}}function l(){try{var n=function(t){var e=t;try{for(;e&&e!==document.documentElement;){var n=window.getComputedStyle(e),a=n&&n.backgroundColor;if(a&&!i(a))return a;e=e.parentElement}var r=window.getComputedStyle(document.documentElement).backgroundColor;if(r&&!i(r))return r;var o=window.getComputedStyle(document.body).backgroundColor;if(o&&!i(o))return o}catch(t){}return""}(a)||"";r.contentWindow.postMessage({type:"PARENT_STYLE",backgroundColor:n,maxWidth:t},e)}catch(t){}}var u,h,y,p=(u=function(){l(),c()},h=100,function(){var t=arguments;clearTimeout(y),y=setTimeout((function(){u.apply(null,t)}),h||50)});function v(){d()}window.addEventListener("message",(function(t){if(t.origin===e){var n=t.data||{};if("IFRAME_READY"===n.type)d(),l(),c();else if("IFRAME_NAV"===n.type){var i=n.path||"/";"/"!==i.charAt(0)&&(i="/"+i);var a="#"+i;if(location.hash!==a){try{history.pushState(null,"",a)}catch(t){location.hash=a}s=i}}else if("IFRAME_HEIGHT"===n.type){var o=parseInt(n.height,10);!isNaN(o)&&o>0&&(r.style.height=o+"px")}else if("WIDGET_LOG"===n.type)try{console.log("[travelity widget]",n.message)}catch(t){}}})),window.addEventListener("hashchange",v,!1),window.addEventListener("popstate",v,!1),document.addEventListener("visibilitychange",(function(){"visible"===document.visibilityState&&(d(),l())})),r.addEventListener("load",(function(){setTimeout((function(){d(),l(),c()}),200)}));try{var m=new MutationObserver(p);m.observe(a,{attributes:!0,attributeFilter:["style","class"]}),m.observe(document.body,{attributes:!0,attributeFilter:["style","class"]})}catch(t){window.addEventListener("resize",p)}window.addEventListener("resize",p),window.travelityWidget={navigateTo:function(t){t||(t="/"),"/"!==t.charAt(0)&&(t="/"+t);var e="#"+t;if(location.hash!==e){try{history.pushState(null,"",e)}catch(t){location.hash=e}s=t,d()}},requestHeight:c,sendStyle:l,setMaxWidth:function(e){t=e||t,a.style.maxWidth=t,l()},iframeElement:r}}();</script>
+</html>
