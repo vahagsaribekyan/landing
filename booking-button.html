@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="https://img.icons8.com/?size=100&id=jHTpT63mCPmd&format=png&color=FF3B30">
+    <title>Kutaisi Walking Tour — Budget Georgia</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --brand: #FF3B30;
+        --text: #1d1d1f;
+        --muted: #444;
+        --line: #e5e5e5;
+      }
+      * { box-sizing: border-box; }
+      body {
+        font-family: "DM Sans", system-ui, Arial, sans-serif;
+        margin: 0;
+        color: var(--text);
+        line-height: 1.6;
+      }
+      a { color: inherit; }
+
+      /* ---------- Header / Nav ---------- */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: #fff;
+        border-bottom: 1px solid var(--line);
+      }
+      .nav {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 28px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        line-height: 1;
+        color: var(--brand);
+        text-decoration: none;
+        letter-spacing: .5px;
+      }
+      .logo img { width: 40px; height: 40px; }
+      .logo span { font-size: 16px; }
+      .menu {
+        display: flex;
+        gap: 34px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .menu a {
+        text-decoration: none;
+        color: #555;
+        font-size: 14px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .menu a:hover { color: var(--brand); }
+      .burger { display: none; background: none; border: 0; font-size: 26px; cursor: pointer; color: #555; }
+
+      /* ---------- Hero ---------- */
+      .hero {
+        position: relative;
+        min-height: 460px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #fff;
+        background: url("https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,.15);
+      }
+      .hero h1, .hero p { position: relative; z-index: 1; margin: 0; }
+      .hero h1 {
+        font-weight: 400;
+        font-size: clamp(40px, 8vw, 96px);
+        letter-spacing: 6px;
+        text-transform: uppercase;
+        text-shadow: 0 2px 20px rgba(0,0,0,.35);
+      }
+      .hero p {
+        font-size: clamp(18px, 2.4vw, 28px);
+        margin-top: 18px;
+        text-shadow: 0 2px 12px rgba(0,0,0,.4);
+      }
+
+      /* ---------- Content ---------- */
+      .container { max-width: 1280px; margin: 0 auto; padding: 0 28px; }
+      .intro { font-size: 18px; color: var(--muted); padding: 48px 0 8px; }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        padding: 24px 0 64px;
+      }
+      .media { width: 100%; }
+      .video-thumb {
+        position: relative;
+        display: block;
+        width: 320px;
+        max-width: 100%;
+        aspect-ratio: 16 / 10;
+        border-radius: 4px;
+        overflow: hidden;
+        background: #000 center/cover no-repeat;
+        margin-bottom: 28px;
+      }
+      .video-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .play {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+      }
+      .play svg { width: 64px; height: 64px; filter: drop-shadow(0 2px 6px rgba(0,0,0,.5)); }
+
+      .photo {
+        width: 100%;
+        border-radius: 4px;
+        display: block;
+        object-fit: cover;
+      }
+
+      h3 { font-size: 18px; margin: 24px 0 8px; }
+      ul.dash { margin: 0; padding-left: 22px; }
+      ul.dash li { margin: 6px 0; }
+
+      .body-copy { color: var(--muted); margin-top: 24px; }
+      .body-copy a { font-weight: 700; text-decoration: underline; color: var(--text); }
+
+      /* ---------- Price / Booking ---------- */
+      .price { margin-top: 36px; }
+      .price h4 { font-size: 18px; margin: 0 0 10px; }
+      .price-row {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin: 10px 0;
+        font-size: 16px;
+      }
+      .book-btn {
+        display: inline-block;
+        background: var(--brand);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+        letter-spacing: .5px;
+        padding: 10px 22px;
+        border-radius: 4px;
+        border: 0;
+        cursor: pointer;
+        transition: background .15s ease, transform .05s ease;
+      }
+      .book-btn:hover { background: #e0271d; }
+      .book-btn:active { transform: translateY(1px); }
+
+      .map { width: 100%; border: 0; border-radius: 4px; min-height: 340px; }
+
+      /* ---------- Footer ---------- */
+      footer {
+        background: #f3f3f3;
+        margin-top: 40px;
+        padding: 56px 0;
+        font-size: 15px;
+      }
+      .foot-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr 1.4fr auto;
+        gap: 32px;
+      }
+      .foot-brand .logo { margin-bottom: 14px; }
+      .foot-brand .logo img { width: 52px; height: 52px; }
+      .foot-brand .logo span { font-size: 22px; }
+      .foot-brand p { color: #555; max-width: 260px; }
+      footer h5 { font-size: 16px; margin: 0 0 14px; }
+      footer ul { list-style: none; margin: 0; padding: 0; }
+      footer ul li { margin: 8px 0; }
+      footer ul a { text-decoration: underline; color: #333; }
+      .socials { display: flex; gap: 14px; font-size: 22px; }
+      .socials a { color: var(--brand); text-decoration: none; }
+
+      @media (max-width: 900px) {
+        .menu { display: none; }
+        .burger { display: block; }
+        .grid { grid-template-columns: 1fr; gap: 32px; }
+        .foot-grid { grid-template-columns: 1fr 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ===== Header ===== -->
+    <header>
+      <nav class="nav">
+        <a class="logo" href="#">
+          <img src="https://img.icons8.com/?size=100&id=jHTpT63mCPmd&format=png&color=FF3B30" alt="Budget Georgia">
+          <span>BUDGET<br>GEORGIA</span>
+        </a>
+        <ul class="menu">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Tours</a></li>
+          <li><a href="#">Transfers</a></li>
+          <li><a href="#">Camper Van Rental</a></li>
+          <li><a href="#">Partners</a></li>
+          <li><a href="#">Blog / Vlog</a></li>
+          <li><a href="#">About Us</a></li>
+        </ul>
+        <button class="burger" aria-label="Menu">&#9776;</button>
+      </nav>
+    </header>
+
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+      <h1>Kutaisi Walking Tour</h1>
+      <p>Kutaisi Walking Tour with wine tasting</p>
+    </section>
+
+    <!-- ===== Intro ===== -->
+    <div class="container">
+      <p class="intro">
+        Do you have an extra hour in the city? Explore Kutaisi with our walking tour and taste
+        natural Georgian wine. The tour covers central square, royal district of Kutaisi, Bazar
+        and etc. Follow us to explore Kutaisi.
+      </p>
+
+      <!-- ===== Main grid ===== -->
+      <div class="grid">
+        <!-- Left column -->
+        <div class="media">
+          <a class="video-thumb" href="https://www.youtube.com/results?search_query=free+walking+tour+kutaisi+budget+georgia" target="_blank" rel="noopener">
+            <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=640&q=80" alt="Free Walking Tour in Kutaisi">
+            <span class="play">
+              <svg viewBox="0 0 68 48" xmlns="http://www.w3.org/2000/svg">
+                <path d="M66.5 7.7c-.8-2.9-3-5.1-5.9-5.9C55.4.5 34 .5 34 .5S12.6.5 7.4 1.8C4.5 2.6 2.3 4.8 1.5 7.7.2 12.9.2 24 .2 24s0 11.1 1.3 16.3c.8 2.9 3 5.1 5.9 5.9C12.6 47.5 34 47.5 34 47.5s21.4 0 26.6-1.3c2.9-.8 5.1-3 5.9-5.9C67.8 35.1 67.8 24 67.8 24s0-11.1-1.3-16.3z" fill="#f00"/>
+                <path d="M27 34l18-10-18-10z" fill="#fff"/>
+              </svg>
+            </span>
+          </a>
+
+          <h3>Details of tour:</h3>
+          <ul class="dash">
+            <li>Season - Full year</li>
+            <li>Type – Culture and History</li>
+            <li>Duration – 1 hour</li>
+            <li>Frequency – Every day</li>
+          </ul>
+
+          <h3>Highlights:</h3>
+          <ul class="dash">
+            <li>Central square and Kolkheti fountain</li>
+            <li>Opera house</li>
+            <li>White bridge</li>
+            <li>Park of love</li>
+            <li>Golden Marquee palace</li>
+            <li>Central Bazar of Kutaisi</li>
+            <li>Glass of fine Georgian wine</li>
+          </ul>
+
+          <div class="body-copy">
+            <p>
+              Tour starts at 12:00 from <a href="#">our office in Kutaisi</a>. Here guide tells about
+              history of Georgia and Kutaisi. After taking pictures at fountain group continues down to
+              central park where are located statue of sister “Ishkhnelebi” and memorial of “9 April”.
+              Afterwards we pass by Kutaisi city hall, Opera house and visit “Mon Plasir” arch. Then we
+              pass by the first gymnasium and visit white bridge, then go through park of love and visit
+              Golden marquee palace. Then we go to central grocery market called “Mtsvane Bazari”. After
+              the market we walk through the central park of Kutaisi and arrive on central square of the
+              city. In the end of the tour we provide a glass of fine Georgian wine in the wine bar
+              <a href="#">Amber Wine</a>. The tour finishes at <a href="#">our office in Kutaisi</a>.
+            </p>
+          </div>
+
+          <!-- ===== Price + booking buttons ===== -->
+          <div class="price">
+            <h4>Price</h4>
+            <div class="price-row">
+              <span>Group tour - 20 GEL per person</span>
+            </div>
+            <div class="price-row">
+              <span>Private tour - from 80 GEL</span>
+            </div>
+            <div class="price-row">
+              <script
+                src="https://dev2.widget.travelity.app/booking-button.js"
+                data-api-key="wk_c41b3690ea87e45a87b22fbddfdbf0dc06442cab2450e9ca"
+                data-product-id="a17960d7-12b2-4592-87e4-5282320dabae"
+                data-button-text="BOOK NOW"
+                data-button-color="#00786f"
+                data-primary-color="#00786f"
+                data-secondary-color="#FF6B35"
+                data-background-color="#FFFFFF"
+                data-font-family="DM Sans"
+              ></script>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right column -->
+        <div class="media">
+          <img class="photo" src="https://images.unsplash.com/photo-1592861956120-e524fc739696?auto=format&fit=crop&w=1000&q=80" alt="Kutaisi colonnade">
+          <iframe
+            class="map"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Kutaisi,+Georgia&output=embed"
+            title="Tour route map"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Footer ===== -->
+    <footer>
+      <div class="container foot-grid">
+        <div class="foot-brand">
+          <a class="logo" href="#">
+            <img src="https://img.icons8.com/?size=100&id=jHTpT63mCPmd&format=png&color=FF3B30" alt="Budget Georgia">
+            <span>BUDGET<br>GEORGIA</span>
+          </a>
+          <p>The low cost tour operator in Georgia</p>
+        </div>
+
+        <div>
+          <h5>About us</h5>
+          <ul>
+            <li><a href="#">Reviews</a></li>
+            <li><a href="#">Affiliate</a></li>
+            <li><a href="#">Career</a></li>
+            <li><a href="#">Blog/Vlog</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Terms and conditions</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Services</h5>
+          <ul>
+            <li><a href="#">Day tours</a></li>
+            <li><a href="#">Multi-day tours</a></li>
+            <li><a href="#">Custom private tours</a></li>
+            <li><a href="#">Transfers</a></li>
+            <li><a href="#">Camper van rental</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Offices</h5>
+          <ul>
+            <li>Tbilisi - <a href="#">26 Anton Purstseladze Street</a></li>
+            <li>Kutaisi - <a href="#">2 Gelati Street</a></li>
+          </ul>
+          <h5 style="margin-top:18px;">Phone/WhatsApp</h5>
+          <ul>
+            <li>Group tours and transfers: +995 551 130 703</li>
+          </ul>
+        </div>
+
+        <div class="socials">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Email">✉</a>
+          <a href="#" aria-label="Pinterest">P</a>
+          <a href="#" aria-label="Instagram">◎</a>
+          <a href="#" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>
